@@ -25,4 +25,4 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 }
 
-mainClassName = "main.java.edu.isu.cs.cs3308.Driver"
+mainClassName = "edu.isu.cs.cs3308.Driver"
