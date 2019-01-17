@@ -131,7 +131,29 @@ public class SinglyLinkedList<E> implements List<E> {
      */
     @Override
     public void insert(E element, int index) {
+        if (element != null && index > 0) {
+            if (index >= listSize) {
+                addLast(element);
+            }
+            else {
+                Node<E> newNode = new Node<>(element);
+                Node<E> currentNode = listHead;
+                Node<E> previousNode = listHead;
 
+                // Travel to correct index while storing the previous node.
+                for (int i = 0; i < index; i++) {
+                    previousNode = currentNode;
+                    currentNode = currentNode.nextNode;
+                }
+
+                // Connect the newNode to the previous node, and the current node to the new node.
+                previousNode.nextNode = newNode;
+                newNode.nextNode = currentNode;
+
+                // Increment the list size.
+                listSize++;
+            }
+        }
     }
 
     /**
