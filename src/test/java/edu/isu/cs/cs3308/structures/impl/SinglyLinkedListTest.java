@@ -112,6 +112,35 @@ public class SinglyLinkedListTest {
     }
 
     /**
+     * Test of remove method, of class SinglyLinkedList.
+     */
+    @Test
+    public void testRemove_5() {
+        fixture.addLast(0);
+        fixture.addLast(2);
+
+        assertEquals(2, fixture.size());
+        assertEquals("Removed the wrong element", new Integer(0), fixture.remove(0));
+        assertEquals("Head not updated", new Integer(2), fixture.first());
+        assertEquals("Size was not correctly updated.", 1, fixture.size());
+    }
+
+    /**
+     * Test of remove method, of class SinglyLinkedList.
+     */
+    @Test
+    public void testRemove_6() {
+        fixture.addLast(0);
+        fixture.addLast(2);
+        fixture.addLast(4);
+
+        assertEquals("Size not updated", 3, fixture.size());
+        assertEquals("Removed the wrong element", new Integer(4), fixture.remove(2));
+        assertEquals("Tail not updated", new Integer(2), fixture.last());
+        assertEquals("Size was not correctly updated.", 2, fixture.size());
+    }
+
+    /**
      * Test of insert method, of class SinglyLinkedList.
      */
     @Test

@@ -2,6 +2,11 @@ package edu.isu.cs.cs3308;
 
 import edu.isu.cs.cs3308.structures.List;
 
+
+/**
+ * A generic template implementation of a singly-lined list structure.
+ * @author Written by Blaise Johnson in compliance with preexisting code and unit tests by Isaac Griffith.
+ */
 public class SinglyLinkedList<E> implements List<E> {
 
     private Node<E> listHead = null;
@@ -156,7 +161,6 @@ public class SinglyLinkedList<E> implements List<E> {
             // Connect the nodes on either side of the current node, then detach it.
             nodeBeforeCurrent.nextNode = nodeAfterCurrent;
             currentNode.nextNode = null;
-            listSize--;
 
             // Update head or tail.
             if (index == 0) {
@@ -166,7 +170,8 @@ public class SinglyLinkedList<E> implements List<E> {
                 listTail = nodeBeforeCurrent;
             }
 
-            // Return contents of removed node.
+            // Return contents of removed node and decrease list size.
+            listSize--;
             return currentNode.nodeData;
         }
     }
