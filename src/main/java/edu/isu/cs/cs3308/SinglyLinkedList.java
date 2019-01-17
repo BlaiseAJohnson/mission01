@@ -5,7 +5,7 @@ import edu.isu.cs.cs3308.structures.List;
 public class SinglyLinkedList<E> implements List<E> {
 
     private Node<E> listHead = null;
-    private Node<E> tail = null;
+    private Node<E> listTail = null;
     private int listSize = 0;
 
     /**
@@ -13,7 +13,12 @@ public class SinglyLinkedList<E> implements List<E> {
      */
     @Override
     public E first() {
-        return listHead.nodeData;
+        if (listHead == null) {
+            return null;
+        }
+        else {
+            return listHead.nodeData;
+        }
     }
 
     /**
@@ -21,7 +26,12 @@ public class SinglyLinkedList<E> implements List<E> {
      */
     @Override
     public E last() {
-        return tail.nodeData;
+        if (listTail == null) {
+            return null;
+        }
+        else {
+            return listTail.nodeData;
+        }
     }
 
     /**
@@ -37,7 +47,7 @@ public class SinglyLinkedList<E> implements List<E> {
 
             if (listSize == 0) {
                 listHead = newNode;
-                tail = newNode;
+                listTail = newNode;
             } else {
                 Node<E> currentNode = listHead;
 
@@ -46,7 +56,7 @@ public class SinglyLinkedList<E> implements List<E> {
                 }
 
                 currentNode.nextNode = newNode;
-                tail = newNode;
+                listTail = newNode;
             }
 
             listSize++;
@@ -61,7 +71,14 @@ public class SinglyLinkedList<E> implements List<E> {
      */
     @Override
     public void addFirst(E element) {
+        if (element != null) {
+            Node<E> newHead = new Node<>(element);
 
+            newHead.nextNode = listHead;
+            listHead = newHead;
+
+            listSize++;
+        }
     }
 
     /**
@@ -92,7 +109,9 @@ public class SinglyLinkedList<E> implements List<E> {
      */
     @Override
     public E removeLast() {
-        return null;
+        E dataOfLastNode = remove(listSize - 1);
+
+        return dataOfLastNode;
     }
 
     /**
@@ -119,7 +138,37 @@ public class SinglyLinkedList<E> implements List<E> {
      */
     @Override
     public E remove(int index) {
-        return null;
+        if (index >= listSize || index < 0) {
+            return null;
+        }
+        else {
+            Node<E> currentNode = listHead;
+            Node<E> nodeAfterCurrent;
+            Node<E> nodeBeforeCurrent = listHead;
+
+            // Travel to the correct node while storing the previous node
+            for (int i = 0; i < index; i++) {
+                nodeBeforeCurrent = currentNode;
+                currentNode = currentNode.nextNode;
+            }
+            nodeAfterCurrent = currentNode.nextNode;
+
+            // Connect the nodes on either side of the current node, then detach it.
+            nodeBeforeCurrent.nextNode = nodeAfterCurrent;
+            currentNode.nextNode = null;
+            listSize--;
+
+            // Update head or tail.
+            if (index == 0) {
+                listHead = nodeAfterCurrent;
+            }
+            else if (index == listSize - 1) {
+                listTail = nodeBeforeCurrent;
+            }
+
+            // Return contents of removed node.
+            return currentNode.nodeData;
+        }
     }
 
     /**
@@ -133,7 +182,7 @@ public class SinglyLinkedList<E> implements List<E> {
      */
     @Override
     public E get(int index) {
-        if (index >= listSize) {
+        if (index >= listSize || index < 0) {
             return null;
         }
         else {
@@ -171,7 +220,15 @@ public class SinglyLinkedList<E> implements List<E> {
      */
     @Override
     public void printList() {
+        Node<E> currentNode = listHead;
 
+        while (true) {
+            System.out.println(currentNode.nodeData);
+
+            if (currentNode.nextNode == null) { break; }
+
+            currentNode = currentNode.nextNode;
+        }
     }
 
     /**

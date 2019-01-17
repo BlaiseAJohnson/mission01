@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package edu.isu.cs.cs3308.structures.impl;
 
 import edu.isu.cs.cs3308.SinglyLinkedList;
@@ -156,9 +161,6 @@ public class SinglyLinkedListTest {
         assertEquals("Size was not updated on correct insert", 3, fixture.size());
     }
 
-    /**
-     * Test of insert method, of class SinglyLinkedList.
-     */
     @Test
     public void testInsert_5() {
         ArrayList<Integer> otherList = new ArrayList<>();
@@ -331,9 +333,6 @@ public class SinglyLinkedListTest {
         assertEquals("Incorrectly added value to list", new Integer(1), fixture.first());
     }
 
-    /**
-     * Test of addFirst method, of class SinglyLinkedList.
-     */
     @Test
     public void testAddFirst_3() {
         ArrayList<Integer> otherList = new ArrayList<>();
@@ -395,9 +394,6 @@ public class SinglyLinkedListTest {
         assertEquals(element, fixture.last());
     }
 
-    /**
-     * Test of addLast method, of class SinglyLinkedList.
-     */
     @Test
     public void testAddLast_4() {
         ArrayList<Integer> otherList = new ArrayList<>();
